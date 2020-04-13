@@ -1,0 +1,25 @@
+@extends('layouts.admin')
+@section('content')
+<h1 class="text-center">UBAH DATA</h1>
+<br>
+<form action="{{route('admin.do_edit_kategori',$data->id)}}" method="post">
+	{{csrf_field()}}
+	<div class="form-group">
+		<label>Masukan Nama Kategori</label>
+		<input type="text" name="nama" class="form-control" required="" value="{{$data->nama}}">
+	</div>
+	<div class="form-group">
+		<label>Masukan Keterangan Kategori</label>
+		<textarea class="form-control" name="ket" required="" style="height: 150px">{{$data->keterangan}}</textarea>
+	</div>
+	<div class="form-group">
+		<label>Masukan Status</label>
+		<select class="form-control" name="status">
+			<option>{{$data->status}}</option>
+			<option>aktif</option>
+			<option>disable</option>
+		</select>
+	</div>
+	<input type="submit" value="SIMPAN" class="btn btn-info btn-sm">
+</form>
+@endsection
