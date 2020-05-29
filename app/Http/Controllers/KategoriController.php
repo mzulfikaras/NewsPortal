@@ -106,6 +106,22 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Kategori = Kategori::find($id);
+        $Kategori->delete();
+        if ($Kategori) {
+            Session::flash('success','Success Delete Data');
+            return redirect()->route('user.kategori');
+        } else {
+            Session::flash('success','Failed Delete Data');
+            return redirect()->route('user.kategori');
+        }
+    }
+
+    public function search(request $request)
+    {
+        $cari = $request->get('cari');
+        $data = Kategori::where('nama','LIKE','%'.$cari.'%')->get();
+        return view('admin.kategori',compact('data'));
+
     }
 }

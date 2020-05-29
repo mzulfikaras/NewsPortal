@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Berita;
+use App\Tentang;
 
 class PageController extends Controller
 {
@@ -43,7 +44,7 @@ $tops =  Berita::orderBy('created_at','DESC')
             ->where('top_news','aktif')
             ->take(8)
             ->get();
-return view('user.dasboard',compact('semua','ekonomi','olahraga','politik','tekno','tops')) ;
+return view('content.isi',compact('semua','ekonomi','olahraga','politik','tekno','tops')) ;
     }
 
     /**
@@ -80,7 +81,7 @@ return view('user.dasboard',compact('semua','ekonomi','olahraga','politik','tekn
                 ->where('status','aktif')
                 ->take(6)
                 ->get();
-        return view('user.detail',compact('news','semua'));
+        return view('content.detail',compact('news','semua'));
     }
 
     /**
@@ -128,6 +129,17 @@ return view('user.dasboard',compact('semua','ekonomi','olahraga','politik','tekn
                     ->where('kategori_id',$id)
                     ->where('status','aktif')
                     ->get();
-        return view('user.list',compact('semua','ekonomi')) ;
+        return view('content.list',compact('semua','ekonomi')) ;
+    }
+    public function cari(Request $request)
+    {
+        $key = $request->get('cari');
+        $ekonomi = Berita::where('judul','LIKE','%'.$key.'%')->get();
+        $about = Tentang::find(1);
+        $semua = Berita::orderBy('created_at','DESC')
+                ->where('status','aktif')
+                ->take(6)
+                ->get();
+        return view('content.list',compact('about','ekonomi','semua')) ;
     }
 }

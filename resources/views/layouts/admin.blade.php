@@ -32,7 +32,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="#" alt="Cool Admin" />
+                    <img src="#" alt="" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
