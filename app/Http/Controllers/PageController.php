@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Berita;
 use App\Tentang;
+use App\Komentar;
+use Session;
 
 class PageController extends Controller
 {
@@ -44,7 +46,8 @@ $tops =  Berita::orderBy('created_at','DESC')
             ->where('top_news','aktif')
             ->take(8)
             ->get();
-return view('content.isi',compact('semua','ekonomi','olahraga','politik','tekno','tops')) ;
+            $about = Tentang::find(1);
+return view('content.isi',compact('semua','ekonomi','olahraga','politik','tekno','tops','about')) ;
     }
 
     /**
@@ -76,12 +79,17 @@ return view('content.isi',compact('semua','ekonomi','olahraga','politik','tekno'
      */
     public function show($id)
     {
+        $about = Tentang::find(1);
         $news = Berita::find($id);
         $semua = Berita::orderBy('created_at','DESC')
                 ->where('status','aktif')
                 ->take(6)
                 ->get();
-        return view('content.detail',compact('news','semua'));
+        $komen = Komentar::orderBy('created_at','DESC')
+                ->where('id',$id)
+                ->where('status','aktif')
+                ->get();
+        return view('content.detail',compact('about','news','semua','komen'));
     }
 
     /**
@@ -104,7 +112,22 @@ return view('content.isi',compact('semua','ekonomi','olahraga','politik','tekno'
      */
     public function update(Request $request, $id)
     {
-        //
+        $komen = new Komentar;
+        $komen->nama = $request->nama;
+        $komen->email = $request->email;
+        $komen->keterangan = $request->isi;
+        $komen->tanggal = date('Y-m-d');
+        $komen->status = 'aktif';
+        $komen->id = $id;
+        $komen->save();
+
+        if ($komen) {
+            Session::flash('success','Komentar berhasil ditambahkan');
+            return redirect()->back();
+        } else {
+            Session::flash('success','Komentar gagal ditambahkan');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -120,7 +143,7 @@ return view('content.isi',compact('semua','ekonomi','olahraga','politik','tekno'
 
     public function list($id)
     {
-        
+        $about = Tentang::find(1);
         $semua = Berita::orderBy('created_at','DESC')
                 ->where('status','aktif')
                 ->take(6)
@@ -129,7 +152,7 @@ return view('content.isi',compact('semua','ekonomi','olahraga','politik','tekno'
                     ->where('kategori_id',$id)
                     ->where('status','aktif')
                     ->get();
-        return view('content.list',compact('semua','ekonomi')) ;
+        return view('content.list',compact('about','semua','ekonomi')) ;
     }
     public function cari(Request $request)
     {

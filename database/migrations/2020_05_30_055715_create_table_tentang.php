@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTentangTable extends Migration
+class CreateTableTentang extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTentangTable extends Migration
      */
     public function up()
     {
-        Schema::create('about', function (Blueprint $table) {
+        Schema::create('tentang', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tentang');
             $table->string('kontak');

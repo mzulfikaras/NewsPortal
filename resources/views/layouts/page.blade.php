@@ -11,7 +11,7 @@
       <a class="navbar-brand" href="{{route('page.show')}}">ED NEWS</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="{{route('page.show')}}">HOME</a></li>
+      <li><a href="{{route('page.show')}}">HOME</a></li>
       <li><a href="{{route('page.list_news',4)}}">EKONOMI</a></li>
       <li class="dropdown">
       	<a href="#" data-toggle="dropdown" class="dropdown-toggle">
@@ -45,7 +45,7 @@
 
 <nav class="navbar navbar-inverse navbar-button" style="margin-bottom: 0px;margin-top: 50px;color: white">
 	<div class="container">
-		{{-- <div class="row" style="margin-top: 40px;margin-bottom: 40px">
+		<div class="row" style="margin-top: 40px;margin-bottom: 40px">
 			<div class="col-md-4">
 				<p class="text-center"><b>ABOUT ED NEWS</b></p>
 				<p>{{$about->tentang}}</p>
@@ -58,7 +58,7 @@
 					<li>Email : {{$about->email}}</li>
 					<li>Alamat : {{$about->alamat}}</li>
 				</ul>
-			</div> --}}
+			</div>
 			<div class="col-md-4">
 				<p class="text-center"><b>KATEGORI ED NEWS</b></p>
 				<ul>

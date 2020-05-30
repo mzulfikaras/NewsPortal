@@ -1,8 +1,8 @@
 @extends('layouts.page')
 
-@section('isi')
+@section('content')
 <h1><b>{{$news->judul}}</b></h1>
-<p>Penulias : <b>{{$news->author}}</b> ,{{$news->tanggal}}</p>
+<p>Penulis : <b>{{$news->author}}</b> ,{{$news->tanggal}}</p>
 <hr>
 <div class="row">
 	<div class="col-md-8">
@@ -44,7 +44,7 @@
 		<b class="label label-info"><b>BERITA TERBARU</b></b>
 		<hr>
 		@foreach($semua as $a)
-		<a href="" style="text-decoration: none;color: black">
+		<a href="{{route('page.show_news', $a->id)}}" style="text-decoration: none;color: black">
 			<p><b>{{$a->judul}}</b></p>
 			<p>{{$a->tanggal}}</p>
 			<br>

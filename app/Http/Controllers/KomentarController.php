@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Komentar;
+use Session;
 
 class KomentarController extends Controller
 {
@@ -76,10 +77,10 @@ class KomentarController extends Controller
         $komen->save();
         if ($komen) {
             Session::flash('success','Update Finish');
-            return redirect()->route('user.komen') ;
+            return redirect()->route('page.komen') ;
         } else {
             Session::flash('success','Update Failed');
-            return redirect()->route('user.komen') ;
+            return redirect()->route('page.komen') ;
         }
     }
 
@@ -95,10 +96,10 @@ class KomentarController extends Controller
         $komen->delete();
         if ($komen) {
             Session::flash('success','Hapus Finish');
-            return redirect()->route('user.komen') ;
+            return redirect()->route('page.komen') ;
         } else {
             Session::flash('success','Hapus Failed');
-            return redirect()->route('user.komen') ;
+            return redirect()->route('page.komen') ;
         }
     }
 }

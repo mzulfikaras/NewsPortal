@@ -36,7 +36,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('/admin/edit_berita/{id}','BeritaController@edit')->name('admin.edit_berita');
 	Route::post('/admin/edit_berita/{id}','BeritaController@update')->name('admin.edit_berita');
 	Route::get('/admin/hapus_berita/{id}','BeritaController@destroy')->name('admin.hapus_berita');
-	Route::post('/admin/berita/cari','BeritaController@cari')->name('admin.cari_berita');
+	Route::get('/admin/berita/cari','BeritaController@cari')->name('admin.cari_berita');
 	Route::get('/admin/about','AboutController@index')->name('admin.about');
 	Route::post('/admin/about/edit/{id}','AboutController@update')->name('admin.edit_about');
 	Route::get('/komentar','KomentarController@index')->name('admin.komen');

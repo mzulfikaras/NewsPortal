@@ -10,7 +10,7 @@
 				<!-- ekonomi -->
 				@foreach ($ekonomi as $e)
 					<div class="row">
-						<a href="{{route('user.show_news',$e->id)}}" style="color:black">
+						<a href="{{route('page.show_news',$e->id)}}" style="color:black">
 							<div class="col-md-3">
 								<img style="width: 100px;height: 100px;margin: 25px" class="img-rounded img-responsive" src="{{asset('foto/'.$e->foto)}}">
 							</div>
